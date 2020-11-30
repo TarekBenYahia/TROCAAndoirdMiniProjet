@@ -39,6 +39,8 @@ import static java.lang.Integer.parseInt;
 public class ChoixType extends AppCompatActivity {
     private  TextView nomClient ;
     private ImageView trocImg;
+    //String username = getIntent().getStringExtra("USERNAME");
+
 
 
     @Override
@@ -71,10 +73,22 @@ public class ChoixType extends AppCompatActivity {
 
         nomClient = (TextView) findViewById(R.id.nomClient);
         readFile();
+        //System.out.println(username);
+        nomClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewProfile();
+            }
+        });
 
 
 
 
+    }
+
+    private void viewProfile() {
+        Intent intent=new Intent(this,ProfilClient.class);
+        startActivity(intent);
     }
 
     private void openListeAnnonce() {
@@ -95,7 +109,7 @@ public class ChoixType extends AppCompatActivity {
             }
             JSONObject p= new JSONObject(stringBuffer.toString());
             nomClient.setText(p.getString("NomPrenomClient"));
-            System.out.println(stringBuffer.toString());
+           System.out.println(stringBuffer.toString());
 
         }catch (FileNotFoundException f){
             f.printStackTrace();
