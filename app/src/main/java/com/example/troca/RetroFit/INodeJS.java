@@ -5,6 +5,7 @@ import java.util.Date;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface INodeJS {
@@ -29,4 +30,20 @@ public interface INodeJS {
     @POST ("cl/ForgotPass")
     @FormUrlEncoded
     Observable<String> resetPass (@Field("email") String email);
+
+    @POST ("api/v1/annonce")
+    @FormUrlEncoded
+    Observable<String> ajoutAnnonce(@Field("titreAnnonce") String titreAnnonce,
+                                    @Field("descriptionAnnonce") String descriptionAnnonce,
+                                    @Field("photoAnnonce") String photoAnnonce,
+                                    @Field("idClient") int idClient,
+
+                                    @Field("idCategorie") int idCategorie);
+    /*
+    @GET("api/v1/annonce")
+    Call<List<Annonce>> getAnnonce();
+    */
+
+
+
 }

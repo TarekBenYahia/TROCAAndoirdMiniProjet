@@ -20,9 +20,12 @@ import com.example.troca.RetroFit.RetrofitClient;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         compositeDisposable.clear();
         super.onDestroy();
+
     }
 
     @Override
@@ -103,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser(String email, String password) {
+
         compositeDisposable.add(myAPI.loginUser(email,password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -116,9 +121,13 @@ public class MainActivity extends AppCompatActivity {
 
 
                             //Toast.makeText(MainActivity.this, "Login effectué avec succès"+s, Toast.LENGTH_SHORT).show();
+                            //emptyFile();
+                            writeFile(s);
+
 
                             openChoix();
-                            writeFile(s);
+
+
                             //readFile();
                         }
                         else Toast.makeText(MainActivity.this, ""+s, Toast.LENGTH_SHORT).show();
@@ -140,13 +149,18 @@ public class MainActivity extends AppCompatActivity {
     public void writeFile(String d)
     {
         try {
-            FileOutputStream fileOutputStream =openFileOutput("Data.txt",MODE_WORLD_READABLE);
+            FileOutputStream fileOutputStream =openFileOutput("Data.txt",MODE_WORLD_WRITEABLE);
             fileOutputStream.write(d.getBytes());
             fileOutputStream.close();
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void emptyFile() throws FileNotFoundException {
+       PrintWriter pw = new PrintWriter("Data.txt");
+       pw.close();
     }
 
 }
