@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AjoutAnnonce"    android:background="@color/bgColor">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="138dp"
+        android:layout_height="118dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/titreAnnonce"
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:background="@drawable/border"
+        android:backgroundTintMode="screen"
+        android:ems="10"
+        android:gravity="center_horizontal|fill_vertical"
+        android:hint="Titre Annonce"
+        android:inputType="text"
+        android:textAlignment="gravity"
+        android:textColor="#57687c"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.355" />
+
+    <EditText
+        android:id="@+id/catAnnonce"
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:gravity="center|center_horizontal"
+        android:hint="Catégorie"
+        android:inputType="text"
+        android:textAlignment="gravity"
+        android:textColor="#57687c"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.447"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/descAnnonce"
+        android:layout_width="265dp"
+        android:layout_height="186dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:gravity="center|center_horizontal"
+        android:hint="Description"
+        android:inputType="text"
+        android:textAlignment="gravity"
+        android:textColor="#57687c"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.777"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/photoAnnonce"
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:gravity="center|center_horizontal"
+        android:hint="Photo"
+        android:inputType="text"
+        android:textAlignment="gravity"
+        android:textColor="#57687c"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonAjoutAnnonce"
+        android:layout_width="140dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_background"
+        android:text="Ajouter"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.941" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AjoutAnnonce"
+        android:textColor="#031828"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.253" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

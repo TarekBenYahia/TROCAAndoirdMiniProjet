@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TROCA</string>
+    <string name="mdpOublie"><u>Mot de Passe oublié? </u> </string>
+    <string name="desc">Image</string>
+</resources>
