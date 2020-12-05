@@ -13,8 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AdminDashboard"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".DetailedAnnonce"></activity>
+        <activity android:name=".InscriptionPro" />
+        <activity
+            android:name=".AdminDashboard"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ProfilClient" />
         <activity android:name=".ListeAnnonce" />
         <activity android:name=".ForgotPassword" />
