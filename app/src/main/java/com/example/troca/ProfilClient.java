@@ -2,18 +2,26 @@ package com.example.troca;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ProfilClient extends AppCompatActivity {
     private TextView mailC,npC,dnc;
@@ -41,11 +49,34 @@ public class ProfilClient extends AppCompatActivity {
         mailC= (TextView) findViewById(R.id.mailC);
         npC= (TextView) findViewById(R.id.npC);
         dnc= (TextView) findViewById(R.id.dnc);
-        readFile();
+
+        SharedPreferences sharedPreferences= getSharedPreferences("UserData",MODE_PRIVATE);
+        String display = sharedPreferences.getString("display","");
+
+
+        try {
+            JSONObject  p= new JSONObject(display);
+            mailC.setText( p.getString("emailClient"));
+            npC.setText( p.getString("NomPrenomClient"));
+           // dnc.setText(p.getString("dateNaissClient"));
+
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date convertedCurrentDate = sdf.parse(p.getString("dateNaissClient"));
+            Date d=new Date(convertedCurrentDate.getTime() +86400000);
+
+            String date=sdf.format(d );
+            dnc.setText(date);
+            System.out.println(date);
+
+        } catch (JSONException | ParseException e) {;
+            e.printStackTrace();
+        }
+
 
 
     }
-
+/*
     private void readFile() {
         try {
             FileInputStream fileInputStream=openFileInput("Data.txt");
@@ -69,4 +100,7 @@ public class ProfilClient extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+ */
+
 }

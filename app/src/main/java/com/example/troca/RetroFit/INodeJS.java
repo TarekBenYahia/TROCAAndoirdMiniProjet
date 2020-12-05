@@ -1,8 +1,12 @@
 package com.example.troca.RetroFit;
 
+import com.example.troca.Annonce;
+
 import java.util.Date;
+import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -39,10 +43,10 @@ public interface INodeJS {
                                     @Field("idClient") int idClient,
 
                                     @Field("idCategorie") int idCategorie);
-    /*
+
     @GET("api/v1/annonce")
     Call<List<Annonce>> getAnnonce();
-    */
+
 
 
 

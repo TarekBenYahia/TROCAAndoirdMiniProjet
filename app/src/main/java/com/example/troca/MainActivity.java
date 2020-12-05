@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -101,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     private void openReset() {
         Intent intent=new Intent(this,ForgotPassword.class);
         startActivity(intent);
@@ -118,23 +123,36 @@ public class MainActivity extends AppCompatActivity {
                         {
                             JSONObject  p= new JSONObject(s);
                             Toast.makeText(MainActivity.this, p.getString("NomPrenomClient"), Toast.LENGTH_SHORT).show();
-
-
                             //Toast.makeText(MainActivity.this, "Login effectué avec succès"+s, Toast.LENGTH_SHORT).show();
                             //emptyFile();
-                            writeFile(s);
+                           // writeFile(s);
+                            SharedPreferences sharedPreferences= getSharedPreferences("UserData",MODE_PRIVATE);
+
+                            SharedPreferences.Editor editor= sharedPreferences.edit();
+                            editor.putString("display",s);
+                            editor.commit();
+                            Log.d("mylog",s);
 
 
                             openChoix();
 
-
                             //readFile();
+                        }
+                        else if (s.contains("admin"))
+                        {
+                            Toast.makeText(MainActivity.this, "Admin Connecté", Toast.LENGTH_SHORT).show();
+                            openDashboard();
                         }
                         else Toast.makeText(MainActivity.this, ""+s, Toast.LENGTH_SHORT).show();
 
                     }
                 })
         );
+    }
+
+    private void openDashboard() {
+        Intent intent = new Intent(this,AdminDashboard.class);
+        startActivity(intent);
     }
 
     private void openChoix() {

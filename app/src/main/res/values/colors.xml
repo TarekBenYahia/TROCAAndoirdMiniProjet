@@ -6,4 +6,8 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="white">#FFFFFF</color>
     <color name="bouton">#262E39</color>
+    <color name="orange">#f79304</color>
+    <color name="grey">#57687c</color>
+    <color name="colorBlack">#1E1E1E</color> <!-- We will no use the regular #000000 -->
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
