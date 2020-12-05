@@ -1,10 +1,12 @@
 package com.example.troca;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,12 +27,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView mTitle , mDescription , mDate;
         private ImageView mRessource;
+        private LinearLayout mContainer;
         public MyViewHolder (View view){
             super(view);
             mTitle = view.findViewById(R.id.annonce_titre);
             mDescription = view.findViewById(R.id.annonce_description);
             mDate = view.findViewById(R.id.annonce_date);
             mRessource = view.findViewById(R.id.annonce_image);
+            mContainer = view.findViewById(R.id.annonce_container);
         }
     }
 
@@ -47,11 +51,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Annonce object = objects.get(position);
+        final Annonce object = objects.get(position);
         holder.mRessource.setImageResource(R.drawable.client);
         holder.mTitle.setText(object.getTitreAnnonce());
         holder.mDescription.setText(object.getDescriptionAnnonce());
         holder.mDate.setText(object.getDateAnnonce());
+        holder.mContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(mContext,DetailedAnnonce.class);
+                intent.putExtra("titreAnnonce",object.getTitreAnnonce());
+                intent.putExtra("descriptionAnnonce",object.getDescriptionAnnonce());
+                intent.putExtra("dateAnnonce",object.getDateAnnonce());
+                mContext.startActivity(intent);
+
+            }
+        });
+
 
 
     }

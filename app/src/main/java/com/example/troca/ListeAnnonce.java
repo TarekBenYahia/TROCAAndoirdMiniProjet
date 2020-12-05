@@ -79,7 +79,6 @@ public class ListeAnnonce extends AppCompatActivity {
                     String date = a.getDateAnnonce();
                     Annonce annonce = new Annonce(titre,desc,date,2);
                     myDataSet.add(annonce);
-
                 }
 
 

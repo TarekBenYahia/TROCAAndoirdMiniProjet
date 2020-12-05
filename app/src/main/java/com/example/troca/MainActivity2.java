@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class MainActivity2 extends AppCompatActivity {
-    private Button button1;
+    private Button button1,button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,21 @@ public class MainActivity2 extends AppCompatActivity {
                 openActivity3();
             }
         });
+        button= (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openInscriPro();
+            }
+        });
 
     }
+
+    private void openInscriPro() {
+        Intent intent= new Intent(this,InscriptionPro.class);
+        startActivity(intent);
+    }
+
     public void openActivity3(){
         Intent intent= new Intent(this,Activity2.class);
         startActivity(intent);
