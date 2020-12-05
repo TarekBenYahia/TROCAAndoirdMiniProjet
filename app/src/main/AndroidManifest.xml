@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfilClient"></activity>
+        <activity android:name=".AdminDashboard"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ProfilClient" />
         <activity android:name=".ListeAnnonce" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".AjoutAnnonce" />

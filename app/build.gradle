@@ -37,6 +37,7 @@ dependencies {
     //RetroFit
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
 
     // Material Edit Text
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'

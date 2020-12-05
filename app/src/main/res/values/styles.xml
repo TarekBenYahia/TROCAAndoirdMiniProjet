@@ -6,5 +6,50 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="DescriptiveRegularTextTheme">
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:textColor">#ff808080</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TertiaryTextTheme">
+        <item name="android:textSize">@dimen/tertiary_text_size</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="SecondaryTextTheme">
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+
+    <style name="TitleTextTheme">
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+
+    <style name="BoldTitleTextTheme">
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ListTitleTheme">
+        <item name="android:textSize">@dimen/list_title_size</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="RatingStar">
+        <item name="android:textSize">@dimen/list_title_size</item>
+        <item name="android:color">@color/colorBlack</item>
+    </style>
+
 
 </resources>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.UserManager;
 import android.text.Editable;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.example.troca.RetroFit.INodeJS;
 import com.example.troca.RetroFit.RetrofitClient;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -72,7 +74,20 @@ public class ChoixType extends AppCompatActivity {
         });
 
         nomClient = (TextView) findViewById(R.id.nomClient);
-        readFile();
+
+
+        SharedPreferences sharedPreferences= getSharedPreferences("UserData",MODE_PRIVATE);
+        String display = sharedPreferences.getString("display","");
+
+        try {
+            JSONObject  p= new JSONObject(display);
+            nomClient.setText( p.getString("NomPrenomClient"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        // readFile();
         //System.out.println(username);
         nomClient.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,6 +2,7 @@ package com.example.troca;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -85,6 +86,7 @@ public class AjoutAnnonce extends AppCompatActivity {
                         idc,
                         cat
                 );
+                Toast.makeText(AjoutAnnonce.this, "Annonce Ajoutée Avec succès", Toast.LENGTH_SHORT).show();
             }
         }));
     }
@@ -98,7 +100,7 @@ public class AjoutAnnonce extends AppCompatActivity {
                     public void accept(String s) throws Exception {
                         if (s.contains("enregistré")){
                             Toast.makeText(AjoutAnnonce.this, "Annonce ajoutée Avec Succès", Toast.LENGTH_SHORT).show();
-                            OpenLogin();
+                            OpenListAnnonce();
 
                         }
 
@@ -109,8 +111,10 @@ public class AjoutAnnonce extends AppCompatActivity {
         );
     }
 
-    private void OpenLogin() {
-
+    private void OpenListAnnonce() {
+        Intent intent = new Intent(this,ListeAnnonce.class);
+        startActivity(intent);
     }
+
 
 }
