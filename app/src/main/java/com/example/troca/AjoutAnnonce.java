@@ -3,6 +3,7 @@ package com.example.troca;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -13,6 +14,9 @@ import android.widget.Toast;
 
 import com.example.troca.RetroFit.INodeJS;
 import com.example.troca.RetroFit.RetrofitClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Date;
 
@@ -71,24 +75,37 @@ public class AjoutAnnonce extends AppCompatActivity {
         descAnnonce = (EditText) findViewById(R.id.descAnnonce);
         clientAnn = (EditText) findViewById(R.id.clientAnn);
 
+        //sharedPref
+        SharedPreferences sharedPreferences= getSharedPreferences("UserData",MODE_PRIVATE);
+        String display = sharedPreferences.getString("display","");
+
+        try {
+            JSONObject p= new JSONObject(display);
+            clientAnn.setText( p.getString("NomPrenomClient"));
+            final String idClient = p.getString("idClient");
+            buttonAjoutAnnonce.setOnClickListener((new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int idc=parseInt(idClient,10);
+                    int cat = parseInt( catAnnonce.getText().toString(),10);
+
+                    ajoutAnnonce(
+                            titreAnnonce.getText().toString(),
+                            descAnnonce.getText().toString(),
+                            photoAnnonce.getText().toString(),
+
+                            idc,
+                            cat
+                    );
+                    Toast.makeText(AjoutAnnonce.this, "Annonce Ajoutée Avec succès", Toast.LENGTH_SHORT).show();
+                }
+            }));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         //EVENT
-        buttonAjoutAnnonce.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int idc=parseInt(clientAnn.getText().toString(),10);
-                int cat = parseInt( catAnnonce.getText().toString(),10);
 
-                ajoutAnnonce(
-                        titreAnnonce.getText().toString(),
-                        descAnnonce.getText().toString(),
-                        photoAnnonce.getText().toString(),
-
-                        idc,
-                        cat
-                );
-                Toast.makeText(AjoutAnnonce.this, "Annonce Ajoutée Avec succès", Toast.LENGTH_SHORT).show();
-            }
-        }));
     }
 
     private void ajoutAnnonce(String titreAnnonce, String descriptionAnnonce, String photoAnnonce, int idClient, int idCategorie) {
