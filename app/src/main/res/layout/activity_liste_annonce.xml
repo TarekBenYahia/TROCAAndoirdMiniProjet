@@ -42,5 +42,4 @@
         app:srcCompat="@android:drawable/ic_input_add" />
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout
-    >
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
