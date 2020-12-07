@@ -40,7 +40,7 @@ import static java.lang.Integer.parseInt;
 
 public class ChoixType extends AppCompatActivity {
     private  TextView nomClient ;
-    private ImageView trocImg;
+    private ImageView trocImg,proImg;
     //String username = getIntent().getStringExtra("USERNAME");
 
 
@@ -66,10 +66,18 @@ public class ChoixType extends AppCompatActivity {
         catch (NullPointerException e){}
 
         trocImg=(ImageView) findViewById(R.id.trocImg);
+        proImg=(ImageView) findViewById(R.id.proImg);
         trocImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openListeAnnonce();
+            }
+        });
+
+        proImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openListePro();
             }
         });
 
@@ -103,6 +111,10 @@ public class ChoixType extends AppCompatActivity {
 
     private void viewProfile() {
         Intent intent=new Intent(this,ProfilClient.class);
+        startActivity(intent);
+    }
+    private void openListePro(){
+        Intent intent = new Intent(this, ListePro.class);
         startActivity(intent);
     }
 

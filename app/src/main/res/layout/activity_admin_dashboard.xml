@@ -47,7 +47,16 @@
                 android:textColor="#031821"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:paddingTop="200dp"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:scrollbars="vertical"
+                android:id="@+id/client_my_recycler_view"/>
+
         </FrameLayout>
+
 
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
