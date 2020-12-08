@@ -30,7 +30,7 @@ public class DetailedAnnonce extends AppCompatActivity {
         }
         catch (NullPointerException e){}
 
-        mTitre= findViewById(R.id.toolbar);
+        mTitre= findViewById(R.id.titre);
         mDescription= findViewById(R.id.description);
         mDate= findViewById(R.id.date);
         mImage= findViewById(R.id.imageA);
