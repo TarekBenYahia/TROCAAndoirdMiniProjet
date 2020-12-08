@@ -141,16 +141,6 @@ public class MainActivity extends AppCompatActivity {
                         else if (s.contains("admin"))
                         {
 
-                            JSONObject P = new JSONObject(s);
-                            Toast.makeText(MainActivity.this, P.getString("NomPrenomPro"), Toast.LENGTH_SHORT).show();
-                            SharedPreferences sharedPreferences= getSharedPreferences("UserData",MODE_PRIVATE);
-
-                            SharedPreferences.Editor editor= sharedPreferences.edit();
-                            editor.putString("display",s);
-                            editor.commit();
-                            Log.d("mylog",s);
-
-
                             openDashboard();
                         }
                         else if (s.contains("Pro"))
