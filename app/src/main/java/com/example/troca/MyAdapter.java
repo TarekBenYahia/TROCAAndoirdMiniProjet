@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private TextView mTitle , mDescription , mDate;
         private ImageView mRessource;
         private LinearLayout mContainer;
+        //private Button complaintForum;
+
         public MyViewHolder (View view){
             super(view);
             mTitle = view.findViewById(R.id.annonce_titre);
@@ -35,6 +38,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             mDate = view.findViewById(R.id.annonce_date);
             mRessource = view.findViewById(R.id.annonce_image);
             mContainer = view.findViewById(R.id.annonce_container);
+            // complaintForum = view.findViewById(R.id.complaintDetailcomments);
+
         }
     }
 
@@ -56,6 +61,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.mTitle.setText(object.getTitreAnnonce());
         holder.mDescription.setText(object.getDescriptionAnnonce());
         holder.mDate.setText(object.getDateAnnonce());
+       /* holder.complaintForum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent oi = new Intent( v.getContext() ,CommentsActivity.class );
+                //oi.putExtra("complaint", complaint);
+                mContext.startActivity(oi);
+            }
+        });
+
+*/
         holder.mContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

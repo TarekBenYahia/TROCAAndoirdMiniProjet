@@ -1,6 +1,7 @@
 package com.example.troca.RetroFit;
 
 import com.example.troca.Annonce;
+import com.example.troca.Comment;
 
 import java.util.Date;
 import java.util.List;
@@ -43,11 +44,19 @@ public interface INodeJS {
                                     @Field("idClient") int idClient,
 
                                     @Field("idCategorie") int idCategorie);
+    @POST ("commentaire")
+    @FormUrlEncoded
+    Observable<String> ajoutCommentaire(@Field("Contenu") String Contenu,
+                                    @Field("idAnnonce") int complaint,
+                                    @Field("idClient") int idClient);
+
 
     @GET("api/v1/annonce")
     Call<List<Annonce>> getAnnonce();
 
 
+    @GET("commentaire")
+    Call<List<Comment>> getCommentaire();
 
 
 }

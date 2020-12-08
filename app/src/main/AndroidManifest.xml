@@ -18,6 +18,8 @@
         <activity
             android:name=".AdminDashboard"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AfficheCommentaire" />
+
         <activity android:name=".ProfilClient" />
         <activity android:name=".ListeAnnonce" />
         <activity android:name=".ForgotPassword" />

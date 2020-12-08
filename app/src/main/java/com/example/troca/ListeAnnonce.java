@@ -103,6 +103,7 @@ public class ListeAnnonce extends AppCompatActivity {
 
 
 
+
         mAdapter = new MyAdapter(ListeAnnonce.this,myDataSet);
         recyclerView.setAdapter(mAdapter);
 

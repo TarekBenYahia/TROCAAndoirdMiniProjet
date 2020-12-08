@@ -32,33 +32,12 @@
 
 
             <TextView
-                android:id="@+id/annonce_titre"
-                style="@style/BoldTitleTextTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Titre de l'annonce" />
-
-            <TextView
                 android:id="@+id/annonce_description"
                 style="@style/SecondaryTextTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Nom Du Client" />
 
-
-            <RatingBar
-                android:id="@+id/annonce_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="3"
-                android:saveEnabled="true"
-                tools:rating="1.5" />
-
-            <TextView
-                android:id="@+id/annonce_date"
-                android:layout_width="145dp"
-                android:layout_height="wrap_content"
-                android:text="Date" />
 
         </LinearLayout>
 
