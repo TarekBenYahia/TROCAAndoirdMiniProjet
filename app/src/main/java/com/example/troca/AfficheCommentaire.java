@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,13 +34,20 @@ public class AfficheCommentaire extends AppCompatActivity implements Commentaire
     private EditText comment_text;
     private Button commentSubmit;
     private Annonce complaint;
-    Button imageMore;
-
+    Button imageMore,chatB;
+Comment comment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_affiche_stade);
+        setContentView(R.layout.activity_affiche_commentaire);
         imageMore = findViewById(R.id.imageMore);
+        chatB=(Button) findViewById(R.id.chatB);
+        chatB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotochat();
+            }
+        });
 
         recyclerView = findViewById(R.id.recyclerview);
         comment_text = findViewById(R.id.comment_text);
@@ -88,5 +96,10 @@ public class AfficheCommentaire extends AppCompatActivity implements Commentaire
 
 
     //private void DeleteStade(){}
+    public void gotochat() {
 
+        Intent i = new Intent(AfficheCommentaire.this,ChatBoxActivity.class);
+        i.putExtra("roomid",comment.getIdCommentaire());
+        startActivity(i);
+    }
 }

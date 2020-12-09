@@ -55,6 +55,16 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/like_unfill" />
 
+        <Button
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="116dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/chat"
+            android:id="@+id/chatB" />
+
     </RelativeLayout>
 
 

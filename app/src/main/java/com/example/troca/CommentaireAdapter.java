@@ -34,7 +34,7 @@ public class CommentaireAdapter extends RecyclerView.Adapter<CommentaireAdapter.
     @Override
     public StadeAdapterVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-         return new CommentaireAdapter.StadeAdapterVH(LayoutInflater.from(context).inflate(R.layout.row_stadiums, parent,false ) );
+         return new CommentaireAdapter.StadeAdapterVH(LayoutInflater.from(context).inflate(R.layout.row_commentaire, parent,false ) );
     }
 
     @Override
