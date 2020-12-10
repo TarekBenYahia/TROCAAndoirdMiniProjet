@@ -35,19 +35,13 @@ public class AfficheCommentaire extends AppCompatActivity implements Commentaire
     private Button commentSubmit;
     private Annonce complaint;
     Button imageMore,chatB;
-Comment comment;
+    Comment comment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affiche_commentaire);
         imageMore = findViewById(R.id.imageMore);
         chatB=(Button) findViewById(R.id.chatB);
-        chatB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotochat();
-            }
-        });
 
         recyclerView = findViewById(R.id.recyclerview);
         comment_text = findViewById(R.id.comment_text);

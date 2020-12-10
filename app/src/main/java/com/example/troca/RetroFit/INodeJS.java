@@ -47,8 +47,8 @@ public interface INodeJS {
     @POST ("commentaire")
     @FormUrlEncoded
     Observable<String> ajoutCommentaire(@Field("Contenu") String Contenu,
-                                    @Field("idAnnonce") int complaint,
-                                    @Field("idClient") int idClient);
+                                        @Field("idClient") int idClient,
+    @Field("idAnnonce") int idAnnonce);
 
 
     @GET("api/v1/annonce")

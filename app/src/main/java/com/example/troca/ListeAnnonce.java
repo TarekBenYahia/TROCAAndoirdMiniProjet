@@ -96,8 +96,10 @@ public class ListeAnnonce extends AppCompatActivity {
 
         //retrofit
         recyclerView = findViewById(R.id.my_recycler_view);
+
         manager = new GridLayoutManager(ListeAnnonce.this,2);
-        recyclerView.setLayoutManager(manager);
+
+            recyclerView.setLayoutManager(manager);
 
         myDataSet=new ArrayList<>();
 
@@ -108,8 +110,7 @@ public class ListeAnnonce extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
 
-    }
-
+        }
     private void openAddActivity() {
         Intent intent=new Intent(this,AjoutAnnonce.class);
         startActivity(intent);

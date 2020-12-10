@@ -90,7 +90,7 @@ public class ChoixType extends AppCompatActivity {
     }
 
     private void openListeAnnonce() {
-        Intent intent= new Intent(this, ListeAnnonce.class);
+        Intent intent= new Intent(this, DetailedAnnonce.class);
         startActivity(intent);
     }
 

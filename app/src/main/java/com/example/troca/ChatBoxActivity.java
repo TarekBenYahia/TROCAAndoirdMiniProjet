@@ -53,7 +53,7 @@ public class ChatBoxActivity extends AppCompatActivity
         String json = sharedPrefs.getString("SmartMunicipalityUser", "");
         user = gson.fromJson(json, User.class);
         chatBoxAdapter = new NewChatboxAdapter(ChatBoxActivity.this, MessageList, user);
-        Nickname = user.getNomPrenomClient() ;
+       // Nickname = user.getNomPrenomClient() ;
         chatid = (Integer) getIntent().getExtras().getInt("roomid");
 
 

@@ -6,7 +6,6 @@
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="@dimen/card_view_corner_radius"
     app:cardElevation="2dp"
-
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
