@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminDashboard"
+    tools:context=".AcceuilPro"
     android:id="@+id/drawer_layout"
     android:background="@color/bgColor"
     android:fitsSystemWindows="true">
@@ -24,7 +24,7 @@
             android:elevation="4dp"/>
 
         <FrameLayout
-            android:id="@+id/fragment_container"
+            android:id="@+id/fragment_container2"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -47,24 +47,15 @@
                 android:textColor="#031821"
                 android:textSize="24sp"
                 android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:paddingTop="200dp"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:scrollbars="vertical"
-                android:id="@+id/client_my_recycler_view"/>
-
         </FrameLayout>
-
 
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:id="@+id/nav_view"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu"/>
+        android:id="@+id/nav_view2"
+        app:headerLayout="@layout/activity_professional_header"
+        app:menu="@menu/drawer_pro"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

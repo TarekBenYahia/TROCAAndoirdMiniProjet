@@ -39,11 +39,6 @@ public class ListeAnnonce extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_liste_annonce);
-//        super.onCreate(savedInstanceState);
-//        super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 //Remove notification bar
@@ -79,9 +74,8 @@ public class ListeAnnonce extends AppCompatActivity {
                     String date = a.getDateAnnonce();
                     Annonce annonce = new Annonce(titre,desc,date,2);
                     myDataSet.add(annonce);
+
                 }
-
-
 
             }
 
@@ -95,22 +89,17 @@ public class ListeAnnonce extends AppCompatActivity {
 
 
         //retrofit
+
         recyclerView = findViewById(R.id.my_recycler_view);
-
         manager = new GridLayoutManager(ListeAnnonce.this,2);
-
-            recyclerView.setLayoutManager(manager);
-
+        recyclerView.setLayoutManager(manager);
         myDataSet=new ArrayList<>();
-
-
-
-
         mAdapter = new MyAdapter(ListeAnnonce.this,myDataSet);
         recyclerView.setAdapter(mAdapter);
 
 
-        }
+    }
+
     private void openAddActivity() {
         Intent intent=new Intent(this,AjoutAnnonce.class);
         startActivity(intent);

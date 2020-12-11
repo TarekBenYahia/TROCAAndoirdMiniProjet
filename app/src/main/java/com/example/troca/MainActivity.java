@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        if (s.contains("encrypted_password"))
+                        if (s.contains("client"))
                         {
                             JSONObject  p= new JSONObject(s);
                             Toast.makeText(MainActivity.this, p.getString("NomPrenomClient"), Toast.LENGTH_SHORT).show();
@@ -140,14 +140,30 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else if (s.contains("admin"))
                         {
-                            Toast.makeText(MainActivity.this, "Admin Connecté", Toast.LENGTH_SHORT).show();
+
                             openDashboard();
+                        }
+                        else if (s.contains("Pro"))
+                        {
+                            Toast.makeText(MainActivity.this, "Pro Connecté", Toast.LENGTH_SHORT).show();
+                            SharedPreferences sharedPreferences= getSharedPreferences("ProData",MODE_PRIVATE);
+
+                            SharedPreferences.Editor editor= sharedPreferences.edit();
+                            editor.putString("display",s);
+                            editor.commit();
+                            Log.d("mylog",s);
+                            openAcceuilPro();
                         }
                         else Toast.makeText(MainActivity.this, ""+s, Toast.LENGTH_SHORT).show();
 
                     }
                 })
         );
+    }
+
+    private void openAcceuilPro() {
+        Intent intent = new Intent(this,AcceuilPro.class);
+        startActivity(intent);
     }
 
     private void openDashboard() {

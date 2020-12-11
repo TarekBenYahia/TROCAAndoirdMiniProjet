@@ -4,7 +4,11 @@ public class Client {
     String idClient ,NomPrenomClient,emailClient,telClient;
     int mRes;
 
+<<<<<<< HEAD
     public Client(String id, String Nom, String email, String tel, int mRes)
+=======
+    public Client (String id,String Nom,String email,String tel,int mRes)
+>>>>>>> 0fd80fb75096474ae25caab577faa0568cbba0cf
     {
         this.idClient=id;
         this.NomPrenomClient=Nom;

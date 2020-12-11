@@ -2,7 +2,10 @@ package com.example.troca.RetroFit;
 
 import com.example.troca.Annonce;
 import com.example.troca.Client;
+<<<<<<< HEAD
 import com.example.troca.Comment;
+=======
+>>>>>>> 0fd80fb75096474ae25caab577faa0568cbba0cf
 import com.example.troca.Professionnel;
 
 import java.util.Date;
@@ -53,6 +56,27 @@ public interface INodeJS {
     );
 
 
+<<<<<<< HEAD
+=======
+                                    );
+    @POST ("pro/inscriptionPro")
+    @FormUrlEncoded
+    Observable<String> registerPro (@Field("name") String nom,
+                                     @Field("email") String email,
+                                     @Field("password") String password,
+                                     @Field("tel") int tel,
+                                     @Field("dateN")String dateN,
+                                     @Field("numCIN") int numCIN,
+                                     @Field("cin") String cin,
+                                     @Field("adresse") String adresse,
+                                     @Field("nbAnnee") int nbAnnee,
+                                     @Field("cartePro") String cartePro,
+                                     @Field("idC") int idC
+
+    );
+
+
+>>>>>>> 0fd80fb75096474ae25caab577faa0568cbba0cf
     @POST ("cl/ForgotPass")
     @FormUrlEncoded
     Observable<String> resetPass (@Field("email") String email);
@@ -65,6 +89,7 @@ public interface INodeJS {
                                     @Field("idClient") int idClient,
 
                                     @Field("idCategorie") int idCategorie);
+<<<<<<< HEAD
 
     @GET("api/v1/annonce")
     Call<List<Annonce>> getAnnonce();
@@ -94,10 +119,32 @@ public interface INodeJS {
                                         @Field("idClient") int idClient,
                                         @Field("idAnnonce") int idAnnonce);
 
+=======
+
+    @GET("api/v1/annonce")
+    Call<List<Annonce>> getAnnonce();
+    @GET("cl/client")
+    Call<List<Client>> getClient();
+
+    @DELETE("cl/suppr/{id}")
+    Call<Void> supprimer(@Path("id") String id);
+
+    @GET("cl/professionnel")
+    Call<List<Professionnel>> getPro();
+
+    @POST ("cl/ajoutCommande/")
+    @FormUrlEncoded
+    Observable<String> ajouterCommande (@Field("idClient") String idC,
+                                    @Field("idPro") String idP,
+                                    @Field("date") String date,
+                                    @Field("lieu") String lieu,
+                                    @Field("prix")int prix
+    );
 
 
-    @GET("commentaire")
-    Call<List<Comment>> getCommentaire();
+>>>>>>> 0fd80fb75096474ae25caab577faa0568cbba0cf
+
+
 
 
 }
