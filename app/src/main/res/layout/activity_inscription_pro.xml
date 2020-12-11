@@ -9,14 +9,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="108dp"
-        android:layout_height="78dp"
+        android:layout_width="71dp"
+        android:layout_height="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022"
+        app:layout_constraintVertical_bias="0.017"
         app:srcCompat="@drawable/logo" />
 
     <EditText
@@ -36,10 +36,10 @@
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintVertical_bias="0.127" />
 
     <EditText
-        android:id="@+id/editMailCl"
+        android:id="@+id/editMailPr"
         android:layout_width="267dp"
         android:layout_height="42dp"
         android:background="@drawable/border"
@@ -54,11 +54,11 @@
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219"
+        app:layout_constraintVertical_bias="0.201"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editPswdCl"
+        android:id="@+id/editPswdPr"
         android:layout_width="267dp"
         android:layout_height="42dp"
         android:background="@drawable/border"
@@ -73,7 +73,7 @@
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29"
+        app:layout_constraintVertical_bias="0.275"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -92,7 +92,7 @@
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.365"
+        app:layout_constraintVertical_bias="0.346"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -111,7 +111,7 @@
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.441"
+        app:layout_constraintVertical_bias="0.417"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -130,26 +130,26 @@
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.515"
+        app:layout_constraintVertical_bias="0.486"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editNumCin"
-        android:layout_width="267dp"
-        android:layout_height="42dp"
+        android:layout_width="119dp"
+        android:layout_height="43dp"
         android:background="@drawable/border"
         android:ems="10"
         android:gravity="center|center_horizontal"
-        android:hint="Numero CIN"
+        android:hint="Numero Cin"
         android:inputType="number"
         android:textAlignment="gravity"
         android:textColor="#57687c"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintHorizontal_bias="0.198"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.587"
+        app:layout_constraintVertical_bias="0.558"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -168,26 +168,7 @@
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editRole"
-        android:layout_width="267dp"
-        android:layout_height="42dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:gravity="center|center_horizontal"
-        android:hint="Role"
-        android:inputType="text"
-        android:textAlignment="gravity"
-        android:textColor="#57687c"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809"
+        app:layout_constraintVertical_bias="0.631"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -206,11 +187,11 @@
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735"
+        app:layout_constraintVertical_bias="0.703"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/buttonRegisterPr"
         android:layout_width="140dp"
         android:layout_height="48dp"
         android:background="@drawable/button_background"
@@ -218,10 +199,10 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.903" />
 
     <TextView
         android:id="@+id/textView"
@@ -233,10 +214,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <ImageView
         android:id="@+id/DatePicker"
@@ -244,10 +225,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.744"
+        app:layout_constraintHorizontal_bias="0.723"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.656"
+        app:layout_constraintVertical_bias="0.626"
         app:srcCompat="@drawable/ic_action_name" />
 
     <ImageView
@@ -259,32 +240,46 @@
         app:layout_constraintHorizontal_bias="0.744"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.513"
+        app:layout_constraintVertical_bias="0.486"
         app:srcCompat="@drawable/file_attach" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerExp"
         android:layout_width="98dp"
         android:layout_height="27dp"
 
-        android:background="#f89406  "
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.873" />
+        app:layout_constraintVertical_bias="0.791" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinnerCat"
         android:layout_width="97dp"
         android:layout_height="27dp"
-        android:background="#f89406  "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintHorizontal_bias="0.684"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.873" />
+        app:layout_constraintVertical_bias="0.791" />
+
+    <EditText
+        android:id="@+id/cartePro"
+        android:layout_width="119dp"
+        android:layout_height="43dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:hint="Carte Pro"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.558" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
