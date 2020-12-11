@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="@dimen/card_view_corner_radius"
+    app:cardElevation="2dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/commande_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_max">
+
+
+            <TextView
+                android:id="@+id/email_c"
+                style="@style/BoldTitleTextTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Titre de l'annonce" />
+
+            <TextView
+                android:id="@+id/annonce_description"
+                style="@style/SecondaryTextTheme"
+                android:layout_width="244dp"
+                android:layout_height="wrap_content"
+                tools:text="Nom Du Client" />
+
+            <TextView
+                android:id="@+id/date_c"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:text="Date" />
+
+            <TextView
+                android:id="@+id/lieu_c"
+                android:layout_width="337dp"
+                android:layout_height="wrap_content"
+                android:text="Lieu" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
