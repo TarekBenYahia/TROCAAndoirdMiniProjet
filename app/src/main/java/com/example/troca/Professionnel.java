@@ -1,12 +1,14 @@
 package com.example.troca;
 
 public class Professionnel {
-    String NomPrenomPro, emailPro,notePro;
+    String idPro ,NomPrenomPro, emailPro,notePro,adressePro;
 
-    public Professionnel(String nomPrenomPro, String emailPro, String notePro) {
+    public Professionnel(String  idPro,String nomPrenomPro, String emailPro, String notePro, String adresse) {
+        this.idPro = idPro;
         this.NomPrenomPro = nomPrenomPro;
         this.emailPro = emailPro;
         this.notePro = notePro;
+        this.adressePro = adresse;
     }
 
     public String getNomPrenomPro() {
@@ -31,5 +33,21 @@ public class Professionnel {
 
     public void setNotePro(String notePro) {
         this.notePro = notePro;
+    }
+
+    public String getAdressePro() {
+        return adressePro;
+    }
+
+    public void setAdressePro(String adresse) {
+        this.adressePro = adresse;
+    }
+
+    public String getIdPro() {
+        return idPro;
+    }
+
+    public void setIdPro(String idPro) {
+        this.idPro = idPro;
     }
 }

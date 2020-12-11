@@ -119,21 +119,15 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        if (s.contains("client"))
+                        if (s.contains("NomPrenomClient"))
                         {
                             JSONObject  p= new JSONObject(s);
                             Toast.makeText(MainActivity.this, p.getString("NomPrenomClient"), Toast.LENGTH_SHORT).show();
-                            //Toast.makeText(MainActivity.this, "Login effectué avec succès"+s, Toast.LENGTH_SHORT).show();
-                            //emptyFile();
-                           // writeFile(s);
                             SharedPreferences sharedPreferences= getSharedPreferences("UserData",MODE_PRIVATE);
 
                             SharedPreferences.Editor editor= sharedPreferences.edit();
                             editor.putString("display",s);
                             editor.commit();
-                            Log.d("mylog",s);
-
-
                             openChoix();
 
                             //readFile();
@@ -143,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
                             openDashboard();
                         }
-                        else if (s.contains("Pro"))
+                        else if (s.contains("NomPrenomPro"))
                         {
                             Toast.makeText(MainActivity.this, "Pro Connecté", Toast.LENGTH_SHORT).show();
                             SharedPreferences sharedPreferences= getSharedPreferences("ProData",MODE_PRIVATE);
@@ -151,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor= sharedPreferences.edit();
                             editor.putString("display",s);
                             editor.commit();
-                            Log.d("mylog",s);
                             openAcceuilPro();
                         }
                         else Toast.makeText(MainActivity.this, ""+s, Toast.LENGTH_SHORT).show();
@@ -180,21 +173,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity2.class);
         startActivity(intent);
     }
-    public void writeFile(String d)
-    {
-        try {
-            FileOutputStream fileOutputStream =openFileOutput("Data.txt",MODE_WORLD_WRITEABLE);
-            fileOutputStream.write(d.getBytes());
-            fileOutputStream.close();
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public void emptyFile() throws FileNotFoundException {
-       PrintWriter pw = new PrintWriter("Data.txt");
-       pw.close();
-    }
 
 }

@@ -55,8 +55,50 @@
                 style="@style/SecondaryTextTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/lieu"
+                style="@style/SecondaryTextTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/google_map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="235dp"
+                android:layout_marginBottom="155dp" />
+
+            <TextView
+                android:id="@+id/adressClient"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="142dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="75dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="321dp"
+                android:layout_marginBottom="96dp"
+                android:text="Adresse:"
+                android:textColor="#031828"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -64,10 +106,10 @@
         android:id="@+id/AjoutC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirmer"
-        android:textColor="@color/white"
         android:background="@drawable/button_background"
+        android:text="Engager"
+        android:textColor="@color/white"
         app:layout_anchor="@+id/linearLayout2"
-        app:layout_anchorGravity="center" />
+        app:layout_anchorGravity="bottom|center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

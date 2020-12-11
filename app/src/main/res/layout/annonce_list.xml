@@ -25,7 +25,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="163dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/padding_max">
 
@@ -58,6 +58,12 @@
                 android:layout_width="145dp"
                 android:layout_height="wrap_content"
                 android:text="Date" />
+
+            <TextView
+                android:id="@+id/annonce_lieu"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:text="Lieu" />
 
         </LinearLayout>
 

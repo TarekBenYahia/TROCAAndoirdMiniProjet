@@ -58,10 +58,12 @@ public class ListePro extends AppCompatActivity {
             public void onResponse(Call<List<Professionnel>> call, Response<List<Professionnel>> response) {
                 List<Professionnel> Professionnels= response.body();
                 for (Professionnel a: Professionnels){
+                    String id = a.getIdPro();
                     String nom = a.getNomPrenomPro();
                     String email = a.getEmailPro();
                     String note = a.getNotePro();
-                    Professionnel professionnel = new Professionnel(nom,email,note);
+                    String adresse = a.getAdressePro();
+                    Professionnel professionnel = new Professionnel(id,nom,email,note,adresse);
                     myDataSet.add(professionnel);
 
                 }

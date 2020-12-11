@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -68,7 +69,6 @@ public class detail_client extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 supprimerUtilisateur(id);
-
             }
         });
     }
@@ -87,13 +87,9 @@ public class detail_client extends AppCompatActivity {
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
+                        Progress();
                         Toast.makeText(detail_client.this, "Client Supprimé", Toast.LENGTH_SHORT).show();
-                       /* Intent intent= new Intent(this,AdminDashboard.class);
-                        startActivity(intent);
-
-
-                        */
-
+                        redirectDashboard();
                     }
 
                     @Override
@@ -114,5 +110,14 @@ public class detail_client extends AppCompatActivity {
         AlertDialog ad = builder.create();
         ad.show();
 
+    }
+
+    private void Progress() {
+        ProgressDialog dialog = ProgressDialog.show(this,"","Chargement...",true);
+    }
+
+    private void redirectDashboard() {
+        Intent intent = new Intent(this,AdminDashboard.class);
+        startActivity(intent);
     }
 }

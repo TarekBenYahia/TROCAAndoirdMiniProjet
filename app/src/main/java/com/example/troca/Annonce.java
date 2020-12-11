@@ -1,7 +1,7 @@
 package com.example.troca;
 
 public class Annonce {
-    private String titreAnnonce,descriptionAnnonce ,dateAnnonce;
+    private String titreAnnonce,descriptionAnnonce ,dateAnnonce,idAnnonce;
     private int ressourceImg;
 
     public Annonce (String title, String description,String dateAnnonce,int ressourceImg){
@@ -10,6 +10,7 @@ public class Annonce {
         this.dateAnnonce=dateAnnonce;
         this.ressourceImg=ressourceImg;
     }
+
 
     public String getDateAnnonce() {
         return dateAnnonce;

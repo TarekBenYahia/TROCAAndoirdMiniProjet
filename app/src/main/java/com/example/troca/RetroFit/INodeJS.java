@@ -2,6 +2,7 @@ package com.example.troca.RetroFit;
 
 import com.example.troca.Annonce;
 import com.example.troca.Client;
+import com.example.troca.CommandesNonValidés;
 import com.example.troca.Professionnel;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface INodeJS {
@@ -21,6 +23,10 @@ public interface INodeJS {
     @FormUrlEncoded
     Observable<String> loginUser(@Field("email") String email,
                                  @Field("password") String password);
+
+    @GET ("cl/mailClient/{id}")
+    Observable<String> getmail(@Path("id") String id);
+
 
     @POST ("cl/inscription")
     @FormUrlEncoded
@@ -78,12 +84,41 @@ public interface INodeJS {
 
     @POST ("cl/ajoutCommande/")
     @FormUrlEncoded
-    Observable<String> ajouterCommande (@Field("idClient") String idC,
-                                    @Field("idPro") String idP,
+    Observable<String> ajouterCommande (@Field("idClient") int idClient,
+                                    @Field("idPro") int idPro,
                                     @Field("date") String date,
                                     @Field("lieu") String lieu,
-                                    @Field("prix")int prix
+                                    @Field("prix") int prix
     );
+
+    @POST ("commentaire/")
+    @FormUrlEncoded
+    Observable<String> ajouterCommentaire (@Field("idClient") String idClient,
+                                           @Field("Contenu") String Contenu,
+                                        @Field("idAnnonce") String idAnnonce,
+                                        @Field("nbrLike")String nbrLike
+    );
+
+    @GET("cl/commandeNonValides/{idPro}")
+    Call<List<CommandesNonValidés>> getCommandes(@Path("idPro") int idPro);
+
+
+    @PUT("cl/accepterCommande/{idCommande}")
+    Call<Void> accepterCommande(@Path("idCommande") String idCommande);
+
+    @POST ("cl/refuserCommande")
+    @FormUrlEncoded
+    Observable<String> refuserCommande (@Field("idCommande") String idCommande,
+                                     @Field("idClient") String idClient,
+                                     @Field("idPro") String idPro,
+                                     @Field("date") String date,
+                                     @Field("lieu")String lieu
+
+    );
+    @DELETE("cl/supprimerCommande/{id}")
+    Call<Void> supprimerCmdR(@Path("id") String id);
+
+
 
 
 

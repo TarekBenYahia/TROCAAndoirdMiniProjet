@@ -9,6 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -101,6 +103,11 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
         switch (item.getItemId()){
             case R.id.nav_client:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container2,new FragmentClient()).commit();
+                break;
+            case R.id.nav_logout_admin:
+                ProgressDialog dialog = ProgressDialog.show(this,"","Loading...",true);
+                Intent intent = new Intent(this,MainActivity.class);
+                startActivity(intent);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
