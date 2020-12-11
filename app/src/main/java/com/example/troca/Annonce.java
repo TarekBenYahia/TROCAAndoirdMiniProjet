@@ -3,8 +3,17 @@ package com.example.troca;
 public class Annonce {
     private String titreAnnonce,descriptionAnnonce ,dateAnnonce;
     private int ressourceImg;
+private int idAnnonce;
 
-    public Annonce (String title, String description,String dateAnnonce,int ressourceImg){
+    public int getIdAnnonce() {
+        return idAnnonce;
+    }
+
+    public void setIdAnnonce(int idAnnonce) {
+        this.idAnnonce = idAnnonce;
+    }
+
+    public Annonce (String title, String description, String dateAnnonce, int ressourceImg){
         this.titreAnnonce=title;
         this.descriptionAnnonce=description;
         this.dateAnnonce=dateAnnonce;
