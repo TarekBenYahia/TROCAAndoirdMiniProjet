@@ -2,6 +2,7 @@ package com.example.troca;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.google.gson.Gson;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +55,7 @@ public class ChatBoxActivity extends AppCompatActivity
         String json = sharedPrefs.getString("SmartMunicipalityUser", "");
         user = gson.fromJson(json, User.class);
         chatBoxAdapter = new NewChatboxAdapter(ChatBoxActivity.this, MessageList, user);
-       // Nickname = user.getNomPrenomClient() ;
+        Nickname = "doghmani safa";
         chatid = (Integer) getIntent().getExtras().getInt("roomid");
 
 
@@ -66,7 +68,7 @@ public class ChatBoxActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-       //setting up recyler
+        //setting up recyler
         myRecylerView = (RecyclerView) findViewById(R.id.messagelist);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         myRecylerView.setLayoutManager(mLayoutManager);
@@ -80,7 +82,7 @@ public class ChatBoxActivity extends AppCompatActivity
             public void onClick(View v) {
                 //retrieve the nickname and the message content and fire the event messagedetection
                 if(!messagetxt.getText().toString().isEmpty()){
-                    socket.emit("messagedetection",user.getIdClient(),messagetxt.getText().toString(),chatid, Nickname);
+                    socket.emit("messagedetection",10,messagetxt.getText().toString(),chatid, Nickname);
 
                     messagetxt.setText(" ");
                 }
@@ -132,7 +134,7 @@ public class ChatBoxActivity extends AppCompatActivity
                             for (int i = 0; i < jsonarray.length(); i++)
                             {
                                 JSONObject obj = (JSONObject) jsonarray.get(i);
-                                String nickname = obj.getString("first_name") + " " + obj.getString("last_name");
+                                String nickname = obj.getString("NomPrenomClient") ;
                                 String message = obj.getString("messagecontent");
                                 int idc = obj.getInt("propid");
                                 Message m = new Message(nickname,message,idc,obj.getInt("id"));
@@ -200,5 +202,5 @@ public class ChatBoxActivity extends AppCompatActivity
         super.onDestroy();
 
         socket.disconnect();
-  }
+    }
 }

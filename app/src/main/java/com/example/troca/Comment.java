@@ -10,6 +10,15 @@ public class Comment implements Serializable
     private Annonce complaint;
     private int nbrLike;
     private int  idClient;
+private User user;
+
+    public User getUser(String idClient) {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Comment(String contenu) {
         Contenu = contenu;

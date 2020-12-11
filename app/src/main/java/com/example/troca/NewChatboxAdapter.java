@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.troca.User;
 
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class NewChatboxAdapter extends RecyclerView.Adapter
     public int getItemViewType(int position) {
         Message message = mMessageList.get(position);
 
-        if (message.getUserid() == currentUser.getmRes())
+        if (message.getUserid() == currentUser.getIdUser())
         {
             // If the current user is the sender of the message
             return VIEW_TYPE_MESSAGE_SENT;

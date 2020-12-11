@@ -31,7 +31,7 @@ public class AjoutAnnonce extends AppCompatActivity {
 
     Button buttonAjoutAnnonce;
     EditText titreAnnonce,catAnnonce,photoAnnonce,descAnnonce,clientAnn;
-
+private Annonce annonce;
     @Override
     protected void onStop() {
         compositeDisposable.clear();
@@ -116,7 +116,12 @@ public class AjoutAnnonce extends AppCompatActivity {
         Intent intent = new Intent(this,ListeAnnonce.class);
         startActivity(intent);
     }
+    public void gotochat(View view) {
 
+        Intent i = new Intent(AjoutAnnonce.this,ChatBoxActivity.class);
+        i.putExtra("roomid",3);
+        startActivity(i);
+    }
 
 
 }

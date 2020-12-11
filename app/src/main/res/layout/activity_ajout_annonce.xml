@@ -124,6 +124,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
 
+    <Button
+        android:layout_width="141dp"
+        android:layout_height="99dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/chat"
+        android:onClick="gotochat"
+        tools:ignore="MissingConstraints,OnClick"
+        tools:layout_editor_absoluteX="229dp"
+        tools:layout_editor_absoluteY="46dp" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

@@ -1,18 +1,10 @@
 package com.example.troca;
 
-public class User {
+public class Client {
     String idClient ,NomPrenomClient,emailClient,telClient;
-    int mRes,idUser;
+    int mRes;
 
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    public User(String id, String Nom, String email, String tel, int mRes)
+    public Client(String id, String Nom, String email, String tel, int mRes)
     {
         this.idClient=id;
         this.NomPrenomClient=Nom;

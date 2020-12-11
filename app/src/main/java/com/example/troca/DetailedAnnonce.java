@@ -19,6 +19,7 @@ import android.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.example.troca.RetroFit.INodeJS;
 import com.example.troca.RetroFit.RetrofitClient;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -99,16 +100,19 @@ public class DetailedAnnonce extends AppCompatActivity {
             commentSubmit.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 int idc=parseInt(idClient,10);
+
 
                 ajoutCommentaire(
                         comment_text.getText().toString(),
-                idc,
+               idc,
                         3
                 );
                 Toast.makeText(DetailedAnnonce.this, "Annonce Ajoutée Avec succès", Toast.LENGTH_SHORT).show();
             }
-        }));  } catch (JSONException e) {
+        }));
+    } catch (JSONException e) {
             e.printStackTrace();
         }
     }
