@@ -19,105 +19,44 @@ tools:context=".DetailedAnnonce">
 
 </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageA"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"/>
 
-        <ImageView
-            android:id="@+id/imageA"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_max"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="383dp"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_max">
+        <TextView
+            android:id="@+id/titre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SecondaryTextTheme"/>
 
-            <TextView
-                android:id="@+id/titre"
-                style="@style/SecondaryTextTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/BoldTitleTextTheme"/>
 
-            <TextView
-                android:id="@+id/description"
-                style="@style/BoldTitleTextTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SecondaryTextTheme"/>
 
-            <TextView
-                android:id="@+id/date"
-                style="@style/SecondaryTextTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="4">
-
-
-                <EditText
-                    android:id="@+id/clientAnn"
-                    android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/border"
-                    android:ems="10"
-                    android:gravity="center|center_horizontal"
-                    android:hint="clientAnn"
-                    android:inputType="text"
-                    android:textAlignment="gravity"
-                    android:textColor="#57687c"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.616"
-                    tools:ignore="MissingConstraints" />
-
-                <EditText
-                    android:id="@+id/comment_text"
-                    android:layout_width="85dp"
-                    android:layout_height="24dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="3"
-                    android:ems="10"
-                    android:hint="Enter your comment...."
-                    android:inputType="textPersonName"
-
-                    app:layout_constraintTop_toBottomOf="@+id/recycler_view_comments" />
-
-                <Button
-                    android:id="@+id/commentSubmit"
-                    android:layout_width="65dp"
-                    android:layout_height="46dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="0.5"
-
-                    android:background="@drawable/ic_menu_send"
-
-
-                    />
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
+
+</LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

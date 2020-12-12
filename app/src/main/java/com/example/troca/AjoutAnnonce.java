@@ -108,8 +108,7 @@ public class AjoutAnnonce extends AppCompatActivity {
 
     }
 
-    private void ajoutAnnonce(String titreAnnonce, String descriptionAnnonce, String photoAnnonce, int idClient, int idCategorie)
-    {
+    private void ajoutAnnonce(String titreAnnonce, String descriptionAnnonce, String photoAnnonce, int idClient, int idCategorie) {
         compositeDisposable.add(myApi5.ajoutAnnonce(titreAnnonce,descriptionAnnonce,photoAnnonce,idClient,idCategorie)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -133,7 +132,6 @@ public class AjoutAnnonce extends AppCompatActivity {
         Intent intent = new Intent(this,ListeAnnonce.class);
         startActivity(intent);
     }
-
 
 
 }

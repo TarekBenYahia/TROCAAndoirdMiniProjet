@@ -20,10 +20,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
@@ -52,12 +48,6 @@ dependencies {
     //Material Dialog
     implementation 'com.github.material-components:material-components-android:1.0.0'
 
-    implementation 'androidx.core:core:1.5.0-alpha01'
-    implementation 'com.android.volley:volley:1.1.1'
-    implementation('com.github.nkzawa:socket.io-client:0.5.0') {
-        exclude group: 'org.json', module: 'json'
-    }
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
 
 
 }
