@@ -44,10 +44,40 @@
                 android:layout_margin="150dp"
                 android:text="Tableau De Bord"
                 android:textAlignment="center"
-                android:textColor="#031821"
+                android:textColor="#55677b"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nbCommande"
+                android:layout_width="195dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="30"
+                android:textAlignment="center"
+                android:textColor="#2B3D4F"
+                android:textSize="120dp" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Commandes en Attentes"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:paddingTop="175dp"
+                android:textSize="20dp"
+                android:textColor="#021727"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:paddingTop="450dp"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:scrollbars="vertical"
+                android:id="@+id/my_recycler_view_commande"/>
         </FrameLayout>
+
+
 
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView

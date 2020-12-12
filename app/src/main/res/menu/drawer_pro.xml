@@ -5,6 +5,10 @@
     >
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Acceuil"/>
+        <item
             android:id="@+id/nav_profil"
             android:icon="@drawable/ic_profil"
             android:title="Profil"
@@ -15,5 +19,12 @@
             android:title="Tableau De Bord"
             />
     </group>
+    <item android:title="Profil">
+        <menu>
+            <item android:title="Deconnexion"
+                  android:icon="@drawable/power"
+                  android:id="@+id/nav_logout"/>
+        </menu>
+    </item>
 
 </menu>

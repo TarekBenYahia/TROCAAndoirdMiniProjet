@@ -13,10 +13,10 @@
         android:textSize="30sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:paddingTop="90dp"
-        android:layout_height="match_parent"
+        android:id="@+id/client_recycler_view"
         android:layout_width="match_parent"
-        android:scrollbars="vertical"
-        android:id="@+id/client_recycler_view"/>
+        android:layout_height="match_parent"
+        android:paddingTop="90dp"
+        android:scrollbars="vertical" />
 
 </RelativeLayout>

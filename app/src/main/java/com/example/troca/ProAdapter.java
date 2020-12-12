@@ -25,7 +25,7 @@ public class ProAdapter extends RecyclerView.Adapter<ProAdapter.MyViewHolder> {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView mNom , mEmail , mNote;
+        private TextView mNom , mEmail , mNote , mLieu;
         private ImageView mRessource;
         private LinearLayout mContainer;
         public MyViewHolder (View view){
@@ -35,6 +35,7 @@ public class ProAdapter extends RecyclerView.Adapter<ProAdapter.MyViewHolder> {
             mNote = view.findViewById(R.id.annonce_date);
             mRessource = view.findViewById(R.id.annonce_image);
             mContainer = view.findViewById(R.id.annonce_container);
+            mLieu = view.findViewById(R.id.annonce_lieu);
         }
     }
 
@@ -55,15 +56,18 @@ public class ProAdapter extends RecyclerView.Adapter<ProAdapter.MyViewHolder> {
         holder.mRessource.setImageResource(R.drawable.pro);
         holder.mNom.setText(object.getNomPrenomPro());
         holder.mEmail.setText(object.getEmailPro());
+        holder.mLieu.setText(object.getAdressePro());
         String note = "30";
         holder.mNote.setText(note);
         holder.mContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(mContext,DetailedPro.class);
+                intent.putExtra("idPro",object.getIdPro());
                 intent.putExtra("titreAnnonce",object.getNomPrenomPro());
                 intent.putExtra("descriptionAnnonce",object.getEmailPro());
                 intent.putExtra("dateAnnonce",object.getNotePro());
+                intent.putExtra("lieu",object.getAdressePro());
                 mContext.startActivity(intent);
 
             }

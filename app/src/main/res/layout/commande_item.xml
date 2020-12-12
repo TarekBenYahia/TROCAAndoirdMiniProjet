@@ -9,19 +9,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:id="@+id/annonce_container"
+        android:id="@+id/commande_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/annonce_image"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +25,7 @@
 
 
             <TextView
-                android:id="@+id/annonce_titre"
+                android:id="@+id/email_c"
                 style="@style/BoldTitleTextTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,28 +34,19 @@
             <TextView
                 android:id="@+id/annonce_description"
                 style="@style/SecondaryTextTheme"
-                android:layout_width="wrap_content"
+                android:layout_width="244dp"
                 android:layout_height="wrap_content"
                 tools:text="Nom Du Client" />
 
-
-            <RatingBar
-                android:id="@+id/annonce_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="3"
-                android:saveEnabled="true"
-                tools:rating="1.5" />
-
             <TextView
-                android:id="@+id/annonce_date"
+                android:id="@+id/date_c"
                 android:layout_width="145dp"
                 android:layout_height="wrap_content"
                 android:text="Date" />
 
             <TextView
-                android:id="@+id/annonce_lieu"
-                android:layout_width="145dp"
+                android:id="@+id/lieu_c"
+                android:layout_width="337dp"
                 android:layout_height="wrap_content"
                 android:text="Lieu" />
 

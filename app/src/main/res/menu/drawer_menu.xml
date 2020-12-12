@@ -20,5 +20,13 @@
             android:title="Catégories"
             />
     </group>
+    <item android:title="Deconnexion">
+        <menu>
+            <item android:title="Deconnexion"
+                android:icon="@drawable/power"
+                android:id="@+id/nav_logout_admin"/>
+        </menu>
+
+    </item>
 
 </menu>
