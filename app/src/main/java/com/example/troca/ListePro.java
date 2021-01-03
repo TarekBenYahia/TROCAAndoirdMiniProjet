@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -47,9 +48,12 @@ public class ListePro extends AppCompatActivity {
         }
         catch (NullPointerException e){}
 
+
         //retrofit
         Retrofit retrofit = RetrofitClient.getInstance();
         myAPI=retrofit.create(INodeJS.class);
+        myDataSet=new ArrayList<>();
+
 
         Call<List<Professionnel>> call = myAPI.getPro();
 
@@ -59,12 +63,20 @@ public class ListePro extends AppCompatActivity {
                 List<Professionnel> Professionnels= response.body();
                 for (Professionnel a: Professionnels){
                     String id = a.getIdPro();
+                    String categorie = a.getIdCategorie();
                     String nom = a.getNomPrenomPro();
                     String email = a.getEmailPro();
                     String note = a.getNotePro();
                     String adresse = a.getAdressePro();
-                    Professionnel professionnel = new Professionnel(id,nom,email,note,adresse);
+                    String CinPro = a.getCinPro();
+                    Professionnel professionnel = new Professionnel(id,nom,email,note,adresse,categorie,CinPro);
                     myDataSet.add(professionnel);
+                    recyclerView = findViewById(R.id.my_recycler_view);
+                    manager = new GridLayoutManager(ListePro.this,1);
+                    recyclerView.setLayoutManager(manager);
+                    //
+                    mAdapter = new ProAdapter(ListePro.this,myDataSet);
+                    recyclerView.setAdapter(mAdapter);
 
                 }
 
@@ -81,14 +93,8 @@ public class ListePro extends AppCompatActivity {
 
         //retrofit
 
-        recyclerView = findViewById(R.id.my_recycler_view);
-        manager = new GridLayoutManager(ListePro.this,2);
-        recyclerView.setLayoutManager(manager);
-        myDataSet=new ArrayList<>();
-        mAdapter = new ProAdapter(ListePro.this,myDataSet);
-        recyclerView.setAdapter(mAdapter);
-
 
 
     }
+
 }

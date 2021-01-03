@@ -1,15 +1,26 @@
 package com.example.troca;
 
-public class Annonce {
-    private String titreAnnonce,descriptionAnnonce ,dateAnnonce,idAnnonce;
-    private int ressourceImg;
+import com.google.gson.annotations.SerializedName;
 
-    public Annonce (String title, String description,String dateAnnonce,int ressourceImg){
-        this.titreAnnonce=title;
-        this.descriptionAnnonce=description;
-        this.dateAnnonce=dateAnnonce;
-        this.ressourceImg=ressourceImg;
+public class Annonce {
+
+    private String titreAnnonce, descriptionAnnonce, dateAnnonce;
+    private String ressourceImg;
+    private int idAnnonce;
+    public Annonce(String title, String description, String dateAnnonce, String ressourceImg) {
+        this.titreAnnonce = title;
+        this.descriptionAnnonce = description;
+        this.dateAnnonce = dateAnnonce;
+        this.ressourceImg = ressourceImg;
     }
+    public int getIdAnnonce() {
+        return idAnnonce;
+    }
+
+    public void setIdAnnonce(int idAnnonce) {
+        this.idAnnonce = idAnnonce;
+    }
+
 
 
     public String getDateAnnonce() {
@@ -36,11 +47,11 @@ public class Annonce {
         this.descriptionAnnonce = description;
     }
 
-    public int getRessourceImg() {
+    public String getRessourceImg() {
         return ressourceImg;
     }
 
-    public void setRessourceImg(int ressourceImg) {
+    public void setRessourceImg(String ressourceImg) {
         this.ressourceImg = ressourceImg;
     }
 }

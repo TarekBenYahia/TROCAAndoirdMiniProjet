@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.troca.RetroFit.INodeJS;
@@ -20,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.Date;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -34,7 +39,7 @@ public class AjoutAnnonce extends AppCompatActivity {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     Button buttonAjoutAnnonce;
-    EditText titreAnnonce,catAnnonce,photoAnnonce,descAnnonce,clientAnn;
+    EditText titreAnnonce, catAnnonce, photoAnnonce, descAnnonce, clientAnn;
 
     @Override
     protected void onStop() {
@@ -62,66 +67,85 @@ public class AjoutAnnonce extends AppCompatActivity {
         try {
             this.getSupportActionBar().hide();
 
+        } catch (NullPointerException e) {
         }
-        catch (NullPointerException e){}
-        Retrofit retrofit = RetrofitClient.getInstance();
-        myApi5= retrofit.create(INodeJS.class);
-        //view
-        buttonAjoutAnnonce = (Button) findViewById(R.id.buttonAjoutAnnonce);
-        titreAnnonce = (EditText) findViewById(R.id.titreAnnonce);
-        catAnnonce = (EditText) findViewById(R.id.catAnnonce);
-        photoAnnonce = (EditText) findViewById(R.id.photoAnnonce);
 
-        descAnnonce = (EditText) findViewById(R.id.descAnnonce);
-        clientAnn = (EditText) findViewById(R.id.clientAnn);
+        Spinner spinnerCat = findViewById(R.id.spinnerCat2);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.categorie, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCat.setAdapter(adapter1);
+        spinnerCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                final String text = parent.getItemAtPosition(position).toString();
+                Retrofit retrofit = RetrofitClient.getInstance();
+                myApi5 = retrofit.create(INodeJS.class);
+                //view
+                buttonAjoutAnnonce = (Button) findViewById(R.id.buttonAjoutAnnonce);
+                titreAnnonce = (EditText) findViewById(R.id.titreAnnonce);
+                photoAnnonce = (EditText) findViewById(R.id.photoAnnonce);
 
-        //sharedPref
-        SharedPreferences sharedPreferences= getSharedPreferences("UserData",MODE_PRIVATE);
-        String display = sharedPreferences.getString("display","");
+                descAnnonce = (EditText) findViewById(R.id.descAnnonce);
+                clientAnn = (EditText) findViewById(R.id.clientAnn);
 
-        try {
-            JSONObject p= new JSONObject(display);
-            clientAnn.setText( p.getString("NomPrenomClient"));
-            final String idClient = p.getString("idClient");
-            buttonAjoutAnnonce.setOnClickListener((new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int idc=parseInt(idClient,10);
-                    int cat = parseInt( catAnnonce.getText().toString(),10);
+                //sharedPref
+                SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
+                String display = sharedPreferences.getString("display", "");
 
-                    ajoutAnnonce(
-                            titreAnnonce.getText().toString(),
-                            descAnnonce.getText().toString(),
-                            photoAnnonce.getText().toString(),
+                try {
+                    JSONObject p = new JSONObject(display);
+                    clientAnn.setText(p.getString("NomPrenomClient"));
+                    final String idClient = p.getString("idClient");
+                    buttonAjoutAnnonce.setOnClickListener((new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int idc = parseInt(idClient, 10);
+                            String cat = "Plombier";
 
-                            idc,
-                            cat
-                    );
-                    Toast.makeText(AjoutAnnonce.this, "Annonce Ajoutée Avec succès", Toast.LENGTH_SHORT).show();
+                            ajoutAnnonce(
+                                    titreAnnonce.getText().toString(),
+                                    descAnnonce.getText().toString(),
+                                    photoAnnonce.getText().toString(),
+                                    idc,
+                                    text
+                            );
+                        }
+                    }));
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            }));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         //EVENT
+        //finish();
 
     }
 
-    private void ajoutAnnonce(String titreAnnonce, String descriptionAnnonce, String photoAnnonce, int idClient, int idCategorie) {
-        compositeDisposable.add(myApi5.ajoutAnnonce(titreAnnonce,descriptionAnnonce,photoAnnonce,idClient,idCategorie)
+    private void ajoutAnnonce(String titreAnnonce, String descriptionAnnonce, String photoAnnonce, int idClient, String idCategorie) {
+        compositeDisposable.add(myApi5.ajoutAnnonce(titreAnnonce, descriptionAnnonce, photoAnnonce, idClient, idCategorie)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        if (s.contains("enregistré")){
-                            Toast.makeText(AjoutAnnonce.this, "Annonce ajoutée Avec Succès", Toast.LENGTH_SHORT).show();
-                            OpenListAnnonce();
-
+                        if (s.contains("added")) {
+                            new SweetAlertDialog(AjoutAnnonce.this, SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText(" Annonce ajoutée avec succès")
+                                    .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            OpenListAnnonce();
+                                        }
+                                    }).show();
                         }
-
-
                     }
                 })
 
@@ -129,7 +153,7 @@ public class AjoutAnnonce extends AppCompatActivity {
     }
 
     private void OpenListAnnonce() {
-        Intent intent = new Intent(this,ListeAnnonce.class);
+        Intent intent = new Intent(this, ListeAnnonce.class);
         startActivity(intent);
     }
 

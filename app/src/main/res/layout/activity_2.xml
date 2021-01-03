@@ -76,7 +76,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPassword3"
+        android:id="@+id/confirmPswdCl"
         android:layout_width="267dp"
         android:layout_height="42dp"
         android:background="@drawable/border"
@@ -112,24 +112,6 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editCin"
-        android:layout_width="267dp"
-        android:layout_height="42dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:gravity="center|center_horizontal"
-        android:hint="Pièce d'identité"
-        android:inputType="text"
-        android:textAlignment="gravity"
-        android:textColor="#57687c"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
         android:id="@+id/editNumCin"
         android:layout_width="267dp"
         android:layout_height="42dp"
@@ -142,9 +124,10 @@
         android:textColor="#57687c"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.621"
+        app:layout_constraintVertical_bias="0.55"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -162,25 +145,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.698"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editRole"
-        android:layout_width="267dp"
-        android:layout_height="42dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:gravity="center|center_horizontal"
-        android:hint="Role"
-        android:inputType="text"
-        android:textAlignment="gravity"
-        android:textColor="#57687c"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.847"
+        app:layout_constraintVertical_bias="0.622"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -199,7 +164,7 @@
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772"
+        app:layout_constraintVertical_bias="0.698"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -239,19 +204,44 @@
         app:layout_constraintHorizontal_bias="0.777"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691"
+        app:layout_constraintVertical_bias="0.619"
         app:srcCompat="@drawable/ic_action_name" />
 
-    <ImageView
-        android:id="@+id/fileAttach"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="64dp"
+        android:layout_height="53dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintHorizontal_bias="0.656"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55"
-        app:srcCompat="@drawable/file_attach" />
+        app:layout_constraintVertical_bias="0.861"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="234dp"
+        android:layout_height="24dp"
+        android:text="Choisissez votre photo de profil :"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.753" />
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="87dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.855"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

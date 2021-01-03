@@ -41,7 +41,7 @@ public class AcceuilPro extends AppCompatActivity implements NavigationView.OnNa
     DrawerLayout drawer;
     INodeJS myAPI;
     private List<CommandesNonValidés> myDataSet;
-    TextView nbCommande ;
+    TextView nbCommande;
     RecyclerView recyclerView;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager manager;
@@ -51,31 +51,81 @@ public class AcceuilPro extends AppCompatActivity implements NavigationView.OnNa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceuil_pro);
 
-        Toolbar toolbar= findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        drawer= findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
 
         nbCommande = (TextView) findViewById(R.id.nbCommande);
 
-        NavigationView navigationView=findViewById(R.id.nav_view2);
+        NavigationView navigationView = findViewById(R.id.nav_view2);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
-                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        SharedPreferences sharedPreferences= getSharedPreferences("ProData",MODE_PRIVATE);
-        String display = sharedPreferences.getString("display","");
+        SharedPreferences sharedPreferences = getSharedPreferences("ProData", MODE_PRIVATE);
+        String display = sharedPreferences.getString("display", "");
 
         try {
-            JSONObject p= new JSONObject(display);
-            Log.d("",p.getString("NomPrenomPro"));
+            JSONObject p = new JSONObject(display);
+            Log.d("", p.getString("idPro"));
+            String idP = p.getString("idPro");
+            Retrofit retrofit = RetrofitClient.getInstance();
+            myAPI = retrofit.create(INodeJS.class);
+            Call<List<CommandesNonValidés>> call = myAPI.getCommandes(Integer.parseInt(idP));
+            myDataSet = new ArrayList<>();
+            recyclerView = findViewById(R.id.my_recycler_view_commande);
+            manager = new GridLayoutManager(AcceuilPro.this, 2);
+            recyclerView.setLayoutManager(manager);
+            call.enqueue(new Callback<List<CommandesNonValidés>>() {
+                @Override
+                public void onResponse(Call<List<CommandesNonValidés>> call, Response<List<CommandesNonValidés>> response) {
+                    try {
+                        List<CommandesNonValidés> cnv = response.body();
+
+                        for (CommandesNonValidés a : cnv) {
+                            String idC = a.getIdCommande();
+                            String idCom = a.getIdClient();
+                            String date = a.getDate();
+                            String lieu = a.getLieu();
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            Date convertedCurrentDate = sdf.parse(date);
+                            Date d = new Date(convertedCurrentDate.getTime() + 86400000);
+                            date = sdf.format(d);
+                            CommandesNonValidés cmd = new CommandesNonValidés(idC, idCom, date, lieu);
+                            myDataSet.add(cmd);
+                        }
+
+                        Log.d("Size", String.valueOf(myDataSet.size()));
+                        nbCommande.setText(String.valueOf(myDataSet.size()));
+                        nbCommande.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container2, new ListeCommandesN()).commit();
+
+                            }
+                        });
+                        mAdapter = new CommandeNAdapter(AcceuilPro.this, myDataSet);
+                        recyclerView.setAdapter(mAdapter);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(Call<List<CommandesNonValidés>> call, Throwable t) {
+
+                }
+            });
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-
+/*
 
         Retrofit retrofit = RetrofitClient.getInstance();
         myAPI=retrofit.create(INodeJS.class);
@@ -127,36 +177,37 @@ public class AcceuilPro extends AppCompatActivity implements NavigationView.OnNa
 
             }
         });
+
+ */
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home:
-                Intent intent1 = new Intent(this , AcceuilPro.class);
+                Intent intent1 = new Intent(this, AcceuilPro.class);
                 startActivity(intent1);
                 break;
 
             case R.id.nav_profil:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container2,new ProfilPro()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container2, new ProfilPro()).commit();
                 break;
 
             case R.id.nav_dashboard:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container2,new ListeCommandesN()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container2, new ListeCommandesN()).commit();
                 break;
 
 
             case R.id.nav_logout:
-                SharedPreferences preferences =getSharedPreferences("ProData", Context.MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences("ProData", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
                 editor.apply();
                 finish();
-                ProgressDialog dialog = ProgressDialog.show(this,"","Loading...",true);
-                Intent intent = new Intent(this,MainActivity.class);
+                ProgressDialog dialog = ProgressDialog.show(this, "", "Loading...", true);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
-
 
 
         }
@@ -165,12 +216,12 @@ public class AcceuilPro extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
-        else {
-            super.onBackPressed();}
 
     }
-    
+
 }

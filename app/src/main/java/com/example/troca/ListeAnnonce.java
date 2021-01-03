@@ -2,7 +2,6 @@ package com.example.troca;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -11,29 +10,24 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.troca.RetroFit.INodeJS;
-import com.example.troca.RetroFit.RetrofitClient;
+import com.example.troca.RetroFit.RetrofitClient2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class ListeAnnonce extends AppCompatActivity {
-    private ImageView addAnnonce;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager manager;
+    private ImageView addAnnonce,imageView;
     private List<Annonce> myDataSet;
     INodeJS myAPI;
-    private static final String BASEURL="http://10.0.2.2:3000/api/v1/annonce";
+    private static final String BASEURL="http://192.168.1.15:3000/api/v1/annonce";
 
 
     @Override
@@ -53,51 +47,51 @@ public class ListeAnnonce extends AppCompatActivity {
         catch (NullPointerException e){}
 
         addAnnonce= (ImageView) findViewById(R.id.addAnnonce);
+        imageView= (ImageView) findViewById(R.id.imageView);
         addAnnonce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openAddActivity();
             }
         });
-        //Retrofit
-        Retrofit retrofit = RetrofitClient.getInstance();
-        myAPI=retrofit.create(INodeJS.class);
-
-        Call<List<Annonce>> call = myAPI.getAnnonce();
-        call.enqueue(new Callback<List<Annonce>>() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<List<Annonce>> call, Response<List<Annonce>> response) {
-                List<Annonce> annonces= response.body();
-                for (Annonce a: annonces){
-                    String titre = a.getTitreAnnonce();
-                    String desc = a.getDescriptionAnnonce();
-                    String date = a.getDateAnnonce();
-                    Annonce annonce = new Annonce(titre,desc,date,2);
-                    myDataSet.add(annonce);
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Annonce>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
-
+            public void onClick(View view) {
+                RetourAcceuil();
             }
         });
 
 
+        //Retrofit
+        Call<List<Annonce>>call= RetrofitClient2.getINodeJS().getAnnonce();
+        call.enqueue(new Callback<List<Annonce>>() {
+            @Override
+            public void onResponse(Call<List<Annonce>> call, Response<List<Annonce>> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(ListeAnnonce.this,"No data available",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Response<List<Annonce>> aaaa=response;
+
+                RecyclerView myrv = (RecyclerView) findViewById(R.id.my_recycler_view);
+                ListAnnonceAdapter myAdapter = new ListAnnonceAdapter(ListeAnnonce.this,response.body());
+                myrv.setLayoutManager(new GridLayoutManager(ListeAnnonce.this,2));
+                myrv.setAdapter(myAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Annonce>> call, Throwable t) {
+            }
+        });
+
 
         //retrofit
 
-        recyclerView = findViewById(R.id.my_recycler_view);
-        manager = new GridLayoutManager(ListeAnnonce.this,2);
-        recyclerView.setLayoutManager(manager);
-        myDataSet=new ArrayList<>();
-        mAdapter = new MyAdapter(ListeAnnonce.this,myDataSet);
-        recyclerView.setAdapter(mAdapter);
+    }
 
-
+    private void RetourAcceuil() {
+        Intent intent = new Intent(this, ChoixType.class);
+        startActivity(intent);
     }
 
     private void openAddActivity() {

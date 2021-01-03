@@ -9,14 +9,25 @@ import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
+
+import com.example.troca.Commentaires.AddCommentResponse;
+import com.example.troca.Commentaires.AddCommnetRequest;
+import com.example.troca.Commentaires.GetCommRequest;
+import com.example.troca.Commentaires.GetCommResponse;
 
 public interface INodeJS {
     @POST ("cl/login")
@@ -26,6 +37,9 @@ public interface INodeJS {
 
     @GET ("cl/mailClient/{id}")
     Observable<String> getmail(@Path("id") String id);
+
+    @GET("pro/NomPro/{idPro}")
+    Observable<String> getEmailPro(@Path("idPro") String idPro);
 
 
     @POST ("cl/inscription")
@@ -53,7 +67,7 @@ public interface INodeJS {
                                      @Field("adresse") String adresse,
                                      @Field("nbAnnee") int nbAnnee,
                                      @Field("cartePro") String cartePro,
-                                     @Field("idC") int idC
+                                     @Field("idCategorie") String idC
 
     );
 
@@ -68,13 +82,17 @@ public interface INodeJS {
                                     @Field("descriptionAnnonce") String descriptionAnnonce,
                                     @Field("photoAnnonce") String photoAnnonce,
                                     @Field("idClient") int idClient,
-
-                                    @Field("idCategorie") int idCategorie);
+                                    @Field("idCategorie") String idCategorie);
 
     @GET("api/v1/annonce")
     Call<List<Annonce>> getAnnonce();
     @GET("cl/client")
     Call<List<Client>> getClient();
+
+    @PUT("cl/modifTel/{idPro}")
+    @FormUrlEncoded
+    Call<Void> modifierTel(@Path("idPro") String idPro,
+                           @Field ("telP") String telP);
 
     @DELETE("cl/suppr/{id}")
     Call<Void> supprimer(@Path("id") String id);
@@ -103,6 +121,8 @@ public interface INodeJS {
     Call<List<CommandesNonValidés>> getCommandes(@Path("idPro") int idPro);
 
 
+
+
     @PUT("cl/accepterCommande/{idCommande}")
     Call<Void> accepterCommande(@Path("idCommande") String idCommande);
 
@@ -115,8 +135,55 @@ public interface INodeJS {
                                      @Field("lieu")String lieu
 
     );
+
+    @POST ("cl/CommandesPayes")
+    @FormUrlEncoded
+    Observable<String> CommandePayee (@Field("idCommande") String idCommande,
+                                        @Field("idClient") String idClient,
+                                        @Field("idPro") String idPro,
+                                        @Field("date") String date
+    );
+
+
     @DELETE("cl/supprimerCommande/{id}")
     Call<Void> supprimerCmdR(@Path("id") String id);
+
+    @GET("cl/commandeNonValidesClient/{idClient}")
+    Call<List<CommandesNonValidés>> getCommandesClient(@Path("idClient") int idClient);
+
+    @GET("cl/commandeValidesClient/{idClient}")
+    Call<List<CommandesNonValidés>> getCommandesClientValides (@Path("idClient") int idClient);
+
+    @POST("commentaire/addcomment")
+    Call<AddCommentResponse>addComment(@Body AddCommnetRequest addCommnetRequest);
+
+    @POST("commentaire/getcommentairebyidannonce")
+    Call<List<GetCommResponse>>getCommByAnnonce(@Body GetCommRequest getCommRequest);
+
+    @PUT("cl/changePassword/{pswd}")
+    @FormUrlEncoded
+    Call<Void> modifierMdp(@Path("pswd") String pswd,
+                           @Field ("password") String password);
+
+    @Multipart
+    @PUT("cl/upload/{emailClient}")
+    Call<ResponseBody> postImage(@Path("emailClient") String emailClient,
+                                 @Part MultipartBody.Part image,
+                                 @Part("upload") RequestBody name);
+
+
+    //Notation Pro pro/NoterPr/tarek@tarek
+    @PUT("pro/NoterPr/{idPro}")
+    @FormUrlEncoded
+    Call<Void> noterPro(@Path("idPro") String idPro,
+                           @Field ("note") String note);
+
+    @PUT("pro/NoterCommande/{idCommande}")
+    @FormUrlEncoded
+    Call<Void> noteCommande(@Path("idCommande") String idCommande,
+                           @Field ("note") String note);
+
+
 
 
 

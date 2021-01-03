@@ -1,12 +1,14 @@
 package com.example.troca;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +32,7 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -74,6 +77,14 @@ public class MainActivity extends AppCompatActivity {
 
         }
         catch (NullPointerException e){}
+
+        ConstraintLayout constraintLayout = findViewById(R.id.main);
+        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(10);
+        animationDrawable.setExitFadeDuration(2500);
+
+        animationDrawable.start();
+
         textView3= (TextView) findViewById(R.id.textView3);
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 loginUser (editMail.getText().toString(),editPswd.getText().toString());
+
             }
         });
     }
@@ -122,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                         if (s.contains("NomPrenomClient"))
                         {
                             JSONObject  p= new JSONObject(s);
-                            Toast.makeText(MainActivity.this, p.getString("NomPrenomClient"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Bienvenue, "+p.getString("NomPrenomClient"), Toast.LENGTH_SHORT).show();
                             SharedPreferences sharedPreferences= getSharedPreferences("UserData",MODE_PRIVATE);
 
                             SharedPreferences.Editor editor= sharedPreferences.edit();
@@ -147,7 +159,10 @@ public class MainActivity extends AppCompatActivity {
                             editor.commit();
                             openAcceuilPro();
                         }
-                        else Toast.makeText(MainActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+                        else {
+                            Toast.makeText(MainActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+                            new SweetAlertDialog(MainActivity.this,SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Vérifiez vos paramètres").show();}
 
                     }
                 })
