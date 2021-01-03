@@ -15,9 +15,17 @@
         <item>7</item>
     </string-array>
     <string-array name="categorie">
-        <item>Catégorie</item>
         <item>Jardinage</item>
         <item>Plomberie</item>
         <item>Electricité</item>
+    </string-array>
+
+    <string-array name="profil">
+        <item></item>
+        <item>Voir Profil</item>
+        <item>Mes Commandes en attente</item>
+        <item>Mes Commandes validées</item>
+        <item>Historique de mes commandes</item>
+        <item>Déconnexion</item>
     </string-array>
 </resources>

@@ -21,25 +21,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024"
         android:layout_gravity=""
+        android:layout_marginTop="10dp"
         app:srcCompat="@drawable/logo" />
 
 
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:paddingTop="90dp"
-        android:layout_height="match_parent"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/ncrollview"
         android:layout_width="match_parent"
-        android:scrollbars="vertical"
-        android:id="@+id/my_recycler_view"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="90dp"
+            tools:listitem="@layout/annonce_list"
+            android:scrollbars="vertical" />
+    </androidx.core.widget.NestedScrollView>
 
     <ImageView
         android:id="@+id/addAnnonce"
-        android:layout_width="107dp"
-        android:layout_height="103dp"
-        android:layout_gravity="end"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:layout_width="60dp"
+        android:layout_height="68dp"
+        app:layout_anchor="@+id/ncrollview"
+        app:layout_anchorGravity="top|center"
+        app:srcCompat="@drawable/add_button"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="10dp"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

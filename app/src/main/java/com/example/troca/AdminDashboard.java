@@ -36,7 +36,9 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
     private RecyclerView.LayoutManager manager;
     private List<Client> myDataSett;
     INodeJS myAPI;
-    private static final String BASEURL="http://10.0.2.2:3000/cl/client";
+    Retrofit retrofit = RetrofitClient.getInstance();
+    String url = String.valueOf(retrofit.baseUrl());
+    private final String BASEURL = url + "cl/client";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,53 +46,51 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
         setContentView(R.layout.activity_admin_dashboard);
 
 
-        Toolbar toolbar= findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        drawer= findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this );
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
-                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        navigationView.setNavigationItemSelectedListener(this);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         //retrofit
 
 
-
         Retrofit retrofit = RetrofitClient.getInstance();
-        myAPI=retrofit.create(INodeJS.class);
-        myDataSett=new ArrayList<>();
+        myAPI = retrofit.create(INodeJS.class);
+        myDataSett = new ArrayList<>();
         recyclerView = findViewById(R.id.client_my_recycler_view);
-        manager = new GridLayoutManager(AdminDashboard.this,1);
+        manager = new GridLayoutManager(AdminDashboard.this, 1);
         recyclerView.setLayoutManager(manager);
-
 
 
         Call<List<Client>> call = myAPI.getClient();
         call.enqueue(new Callback<List<Client>>() {
             @Override
             public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
-                List<Client> clients= response.body();
-                for (Client c: clients){
-                    String id =c.getIdClient();
+                List<Client> clients = response.body();
+                for (Client c : clients) {
+                    String id = c.getIdClient();
                     String nom = c.getNomPrenomClient();
                     String email = c.getEmailClient();
                     String tel = c.getTelClient();
-                    Client client = new Client(id,nom,email,tel,2);
+                    Client client = new Client(id, nom, email, tel, 2);
 
                     myDataSett.add(client);
-                    Log.d("","Printed"+c.getEmailClient());
+                    Log.d("", "Printed" + c.getEmailClient());
 
                 }
                 Log.d("size", String.valueOf(myDataSett.size()));
-                mAdapter = new MyAdapterClient(AdminDashboard.this,myDataSett);
+                mAdapter = new MyAdapterClient(AdminDashboard.this, myDataSett);
                 recyclerView.setAdapter(mAdapter);
             }
 
 
             @Override
             public void onFailure(Call<List<Client>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -100,13 +100,13 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_client:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container2,new FragmentClient()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container2, new FragmentClient()).commit();
                 break;
             case R.id.nav_logout_admin:
-                ProgressDialog dialog = ProgressDialog.show(this,"","Loading...",true);
-                Intent intent = new Intent(this,MainActivity.class);
+                ProgressDialog dialog = ProgressDialog.show(this, "", "Loading...", true);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -116,10 +116,10 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
-        else {
-        super.onBackPressed();}
     }
 }

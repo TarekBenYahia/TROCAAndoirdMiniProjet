@@ -2,8 +2,10 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="bgColor">#DEDEDE</color>
+    <color name="bgColorDarker">#939191</color>
+    <color name="bgColorDarkerD">#504F4F</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#FF9800</color>
     <color name="white">#FFFFFF</color>
     <color name="bouton">#262E39</color>
     <color name="orange">#f79304</color>

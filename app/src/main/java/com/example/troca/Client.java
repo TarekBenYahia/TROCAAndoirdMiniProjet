@@ -1,16 +1,15 @@
 package com.example.troca;
 
 public class Client {
-    String idClient ,NomPrenomClient,emailClient,telClient;
+    String idClient, NomPrenomClient, emailClient, telClient;
     int mRes;
 
-    public Client (String id,String Nom,String email,String tel,int mRes)
-    {
-        this.idClient=id;
-        this.NomPrenomClient=Nom;
-        this.emailClient=email;
-        this.telClient=tel;
-        this.mRes=mRes;
+    public Client(String id, String Nom, String email, String tel, int mRes) {
+        this.idClient = id;
+        this.NomPrenomClient = Nom;
+        this.emailClient = email;
+        this.telClient = tel;
+        this.mRes = mRes;
     }
 
     public String getNomPrenomClient() {

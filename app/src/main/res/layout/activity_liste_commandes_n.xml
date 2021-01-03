@@ -7,43 +7,12 @@
     android:background="@color/bgColor"
     tools:context=".ListeCommandesN">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lieu"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:gravity="center"
-                />
-        </TableRow>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_commande"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </TableLayout>
-
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="294dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
 
 </LinearLayout>

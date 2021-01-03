@@ -19,16 +19,17 @@ public class CommandeNAdapter extends RecyclerView.Adapter<CommandeNAdapter.MyVi
     private Context mContext;
     private List<CommandesNonValidés> objects = new ArrayList<>();
 
-    public CommandeNAdapter(Context context,List<CommandesNonValidés> objects){
+    public CommandeNAdapter(Context context, List<CommandesNonValidés> objects) {
         this.objects = objects;
         this.mContext = context;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView mEmail , mDate , mLieu;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView mEmail, mDate, mLieu;
 
         private LinearLayout mContainer;
-        public MyViewHolder (View view){
+
+        public MyViewHolder(View view) {
             super(view);
             mEmail = view.findViewById(R.id.email_c);
             mDate = view.findViewById(R.id.date_c);
@@ -44,7 +45,7 @@ public class CommandeNAdapter extends RecyclerView.Adapter<CommandeNAdapter.MyVi
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.commande_item,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.commande_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -57,16 +58,15 @@ public class CommandeNAdapter extends RecyclerView.Adapter<CommandeNAdapter.MyVi
         holder.mContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(mContext,DetailedCommande.class);
-                intent.putExtra("emailC",object.getIdClient());
-                intent.putExtra("dateC",object.getDate());
-                intent.putExtra("lieuC",object.getLieu());
-                intent.putExtra("idC",object.getIdCommande());
+                Intent intent = new Intent(mContext, DetailedCommande.class);
+                intent.putExtra("emailC", object.getIdClient());
+                intent.putExtra("dateC", object.getDate());
+                intent.putExtra("lieuC", object.getLieu());
+                intent.putExtra("idC", object.getIdCommande());
                 mContext.startActivity(intent);
 
             }
         });
-
 
 
     }

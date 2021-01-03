@@ -3,6 +3,8 @@ package com.example.troca;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityManager;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,9 +13,14 @@ import android.text.Editable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,39 +45,48 @@ import retrofit2.Retrofit;
 
 import static java.lang.Integer.parseInt;
 
-public class ChoixType extends AppCompatActivity {
-    private  TextView nomClient ;
-    private ImageView trocImg,proImg;
+public class ChoixType extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private  TextView nomClient , textC;
+    private ImageView trocImg,proImg,botC,bulC;
+    Animation BottomAnim;
     //String username = getIntent().getStringExtra("USERNAME");
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //nomClient=(TextView) findViewById(R.id.nomClient);
+
         super.onCreate(savedInstanceState);
-//        super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-//Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-//set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_choix_type);
         try {
             this.getSupportActionBar().hide();
-
         }
         catch (NullPointerException e){}
+        BottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+
+
 
         trocImg=(ImageView) findViewById(R.id.trocImg);
+        textC=findViewById(R.id.textC);
+        bulC= findViewById(R.id.bulC);
         proImg=(ImageView) findViewById(R.id.proImg);
+        botC=(ImageView) findViewById(R.id.botC);
         trocImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openListeAnnonce();
+            }
+        });
+        botC.setAnimation(BottomAnim);
+        textC.setAnimation(BottomAnim);
+        bulC.setAnimation(BottomAnim);
+
+        botC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openChatBot();
             }
         });
 
@@ -82,6 +98,12 @@ public class ChoixType extends AppCompatActivity {
         });
 
         nomClient = (TextView) findViewById(R.id.nomClient);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerP);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.profil,R.layout.spiner_text_style);
+        adapter.setDropDownViewResource(R.layout.spiner_text_style);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
 
         SharedPreferences sharedPreferences= getSharedPreferences("UserData",MODE_PRIVATE);
@@ -109,6 +131,15 @@ public class ChoixType extends AppCompatActivity {
 
     }
 
+    private void openChatBot() {
+        Intent intent = new Intent(this,ChatActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+    }
+
     private void viewProfile() {
         Intent intent=new Intent(this,ProfilClient.class);
         startActivity(intent);
@@ -124,27 +155,51 @@ public class ChoixType extends AppCompatActivity {
     }
 
 
-    public void readFile(){
-        try {
-            FileInputStream fileInputStream=openFileInput("Data.txt");
-            InputStreamReader inputStreamReader=new InputStreamReader(fileInputStream);
-            BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
-            StringBuffer stringBuffer=new StringBuffer();
-            String lines;
-            while ((lines=bufferedReader.readLine())!=null){
-                stringBuffer.append(lines+"\n");
-            }
-            JSONObject p= new JSONObject(stringBuffer.toString());
-            nomClient.setText(p.getString("NomPrenomClient"));
-           System.out.println(stringBuffer.toString());
 
-        }catch (FileNotFoundException f){
-            f.printStackTrace();
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+        String text = parent.getItemAtPosition(position).toString();
+        if (text.contains("Mes Commandes en attente")){
+            openCommandesEnAttentes();
         }
-        catch (Exception e) {
-            e.printStackTrace();
+        else if(text.contains("Mes Commandes validées")){
+            openCommandesValides();
         }
+        else if(text.contains("Historique de mes commandes")){
+            openCommandesFinies();
+        }
+        else if(text.contains("Déconnexion")){
+            SharedPreferences preferences =getSharedPreferences("UserData", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+            finish();
+//            ProgressDialog dialog = ProgressDialog.show(this,"","Loading...",true);
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+
+        }
+
+
     }
 
+    private void openCommandesFinies() {
+        Intent intent = new Intent(this,CommandesFinies.class);
+        startActivity(intent);
+    }
 
+    private void openCommandesValides() {
+        Intent intent = new Intent(this,CommandesValidesClient.class);
+        startActivity(intent);
+    }
+
+    private void openCommandesEnAttentes() {
+        Intent intent = new Intent(this, CommandesEnAttentesCl.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }
